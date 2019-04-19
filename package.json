@@ -4,8 +4,11 @@
   "description": "open source project management",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "full-install": "npm install && npm run client-install",
+    "client-install": "npm install --prefix client",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "ellis g",
   "license": "MIT",
