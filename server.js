@@ -10,10 +10,11 @@ const app = express()
 
 // middleware
 app.use(bodyParser.json())
-
+// api
+app.use('/api/v1', require('./routes/api/task'))
 // database setup
 const db_uri = db_config.development.uri
-mongoose.connect(db)
+mongoose.connect(db_uri)
     .then(()=> console.log(">>> CONNECTED TO MONGODB....."))
     .catch(err => console.log(err))
 
