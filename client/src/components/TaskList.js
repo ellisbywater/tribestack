@@ -1,33 +1,32 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap'
 import { CSSTransition, TransitionGroup } from "react-transition-group"
-import uuid from 'uuid'
+import { connect } from 'react-redux'
+import { getTasks, deleteItem } from "../actions/taskActions";
 
 class TaskList extends Component {
-    state = {
-        tasks: [
-            { id: uuid(), name: 'Task 1'},
-            { id: uuid(), name: 'Task 2'},
-            { id: uuid(), name: 'Task 3'},
-            { id: uuid(), name: 'Task 4'}
-        ]
+
+    componentDidMount() {
+        this.props.getTasks()
+    }
+
+    onDeleteClick = (id) => {
+        this.props.deleteItem(id)
+    }
+
+    onCreateTask = () => {
+
     }
 
     render() {
-        const { tasks } = this.state
+        let { tasks } = this.props.tasks
         return (
             <Container>
                 <Button
                     color="dark"
                     style={{marginBottom: '2rem'}}
-                    onClick={()=> {
-                        const name = prompt('Enter Item')
-                        if(name) {
-                            this.setState(state => ({
-                                tasks: [...state.tasks, {id: uuid(), name}]
-                            }))
-                        }
-                    }}
+                    onClick={this.onCreateTask}
                 >Add Task</Button>
                 <ListGroup>
                     <TransitionGroup className="task-list">
@@ -38,11 +37,7 @@ class TaskList extends Component {
                                         className="remove-btn"
                                         color="danger"
                                         size="sm"
-                                        onClick={()=> {
-                                            this.setState(state => ({
-                                                tasks: state.tasks.filter(task => task.id !== id)
-                                            }))
-                                        }}
+                                        onClick={this.onDeleteClick}
                                     >&times;</Button>
                                     {name}
                                 </ListGroupItem>
@@ -55,4 +50,13 @@ class TaskList extends Component {
     }
 }
 
-export default TaskList
+TaskList.propTypes = {
+    getTasks: PropTypes.func.isRequired,
+    tasks: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+    tasks: state.tasks
+})
+
+export default connect(mapStateToProps, {getTasks, deleteItem})(TaskList)
