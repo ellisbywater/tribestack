@@ -11,7 +11,7 @@ class TaskList extends Component {
         this.props.getTasks()
     }
 
-    onDeleteClick = (id) => {
+    onDeleteClick = id => {
         this.props.deleteItem(id)
     }
 
@@ -37,7 +37,7 @@ class TaskList extends Component {
                                         className="remove-btn"
                                         color="danger"
                                         size="sm"
-                                        onClick={this.onDeleteClick}
+                                        onClick={this.onDeleteClick.bind(this, id)}
                                     >&times;</Button>
                                     {name}
                                 </ListGroupItem>
