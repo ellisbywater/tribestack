@@ -10,24 +10,13 @@ class TaskList extends Component {
     componentDidMount() {
         this.props.getTasks()
     }
-
     onDeleteClick = id => {
         this.props.deleteItem(id)
     }
-
-    onCreateTask = () => {
-
-    }
-
     render() {
         let { tasks } = this.props.tasks
         return (
             <Container>
-                <Button
-                    color="dark"
-                    style={{marginBottom: '2rem'}}
-                    onClick={this.onCreateTask}
-                >Add Task</Button>
                 <ListGroup>
                     <TransitionGroup className="task-list">
                         {tasks.map(({id, name}) => (
