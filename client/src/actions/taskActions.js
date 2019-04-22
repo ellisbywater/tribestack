@@ -11,15 +11,20 @@ export const getTasks = () => dispatch => {
             }))
 }
 
-export const deleteTask = id => {
-    return {
-        type: DELETE_TASK,
-        payload: id
-    }
+export const deleteTask = id => dispatch => {
+    axios.delete(`/api/v1/tasks/${id}`)
+        .then(res => dispatch({
+            type: DELETE_TASK,
+            payload: id
+        }))
 }
 
 export const addTask = task => dispatch => {
-    axios.post()
+    axios.post('/api/v1/tasks', task)
+    .then(res => dispatch({
+        type: ADD_TASK,
+        payload: res.data
+    }))
 }
 
 export const setTasksLoading = () => {

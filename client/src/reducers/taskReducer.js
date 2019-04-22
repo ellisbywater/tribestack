@@ -1,4 +1,3 @@
-import uuid from "uuid"
 import { GET_TASKS, ADD_TASK, DELETE_TASK, TASKS_LOADING } from "../actions/types.";
 
 const initialState = {
@@ -17,7 +16,7 @@ export default function(state = initialState, action) {
         case DELETE_TASK:
             return {
                 ...state,
-                tasks: state.tasks.filter(task => task.id !== action.payload)
+                tasks: state.tasks.filter(task => task._id !== action.payload)
             }
         case ADD_TASK:
             return {

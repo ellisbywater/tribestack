@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import uuid from 'uuid'
 import {
     Button,
     Modal,
@@ -34,7 +33,6 @@ class TaskModal extends Component {
     onSubmit = e => {
         e.preventDefault()
         const newTask = {
-            id: uuid(),
             name: this.state.name
         }
         // Add task via addTask action
