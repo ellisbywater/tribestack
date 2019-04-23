@@ -5,16 +5,22 @@ const logger = require('morgan')
 const dotenv = require('dotenv')
 const path = require('path')
 const db_config = require('./config').db
+const passport = require('./config/passport')
 dotenv.config()
 
 const PORT = process.env.PORT || 5000
 const app = express()
 
+const routes = require('./routes')
+
 // middleware
 app.use(bodyParser.json())
 app.use(logger('dev'))
+app.use(passport.initialize())
+app.use(passport.session())
 // api
-app.use('/api/v1/tasks', require('./routes/api/task'))
+app.use('/auth', routes.auth)
+app.use('/api/v1/tasks', routes.tasks)
 
 if(process.env.NODE_ENV === 'production') {
     //Set static folder

@@ -6,8 +6,8 @@ const Message = require('./Message')
 // Create Schema
 const ChatSchema = new Schema({
     start_date: { type: Date },
-    users: [User],
-    messages: [Message]
+    users: [{type: Schema.Types.ObjectId, ref: 'user'}],
+    messages: [{type: Schema.Types.ObjectId, ref: 'Message' }]
 })
 
 ChatSchema.pre('save', next => {
@@ -18,4 +18,4 @@ ChatSchema.pre('save', next => {
     next()
 })
 
-module.exports = Chat = mongoose.model('chat', ChatSchema)
+module.exports = Chat = mongoose.model('Chat', ChatSchema)

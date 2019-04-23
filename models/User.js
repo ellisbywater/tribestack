@@ -4,11 +4,11 @@ const Tribe = require('./Tribe')
 const Project = require('./Project')
 
 const UserSchema = new Schema({
-    gitHubID: { type: String, required: true },
-    name: { type: String },
+    githubID: { type: String, required: true },
+    displayName: { type: String },
     status: {type: String},
-    tribes: [Tribe],
-    projects: [Project]
+    tribes: [{ type: Schema.Types.ObjectId, ref: 'Tribe' }],
+    projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }]
 })
 
-module.exports = User = mongoose.model('user', UserSchema)
+module.exports = User = mongoose.model('User', UserSchema)

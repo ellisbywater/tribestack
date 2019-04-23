@@ -1,12 +1,12 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-import Task from './Task'
+const Task = require('./Task')
 
 // Create Schema
 const StackSchema = new Schema({
     createdAt: { type: Date, default: Date.now() },
     title: { type: String, required: true },
-    tasks: [Task]
+    tasks: [{type: Schema.Types.ObjectId, ref: 'Task' }]
 })
 
 StackSchema.pre('save', next => {
@@ -17,4 +17,4 @@ StackSchema.pre('save', next => {
     next()
 })
 
-module.exports = Stack = mongoose.model('stack', StackSchema)
+module.exports = Stack = mongoose.model('Stack', StackSchema)

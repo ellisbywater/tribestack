@@ -21,4 +21,4 @@ TaskSchema.pre('save', next => {
     next()
 })
 
-module.exports = Task = mongoose.model('task', TaskSchema)
+module.exports = Task = mongoose.model('Task', TaskSchema)

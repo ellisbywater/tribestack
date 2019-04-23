@@ -6,7 +6,7 @@ const User = require('./User')
 const MessageSchema = new Schema({
     sent: { type: Date, required: true },
     content: { type: String },
-    sender: { type: User}
+    sender: { type: Schema.Types.ObjectId, ref: 'User'}
 })
 
 MessageSchema.pre('save', next => {
@@ -17,4 +17,4 @@ MessageSchema.pre('save', next => {
     next()
 })
 
-module.exports = Message = mongoose.model('message', MessageSchema)
+module.exports = Message = mongoose.model('Message', MessageSchema)

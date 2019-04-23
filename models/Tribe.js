@@ -9,8 +9,8 @@ const TribeSchema = new Schema({
     name: { type: String, required: true },
     description: { type: String },
     time_logged: { type: Number, default: 0 },
-    projects: [Project],
-    members: [User]
+    projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }],
+    members: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 })
 
 TribeSchema.pre('save', next => {
@@ -21,4 +21,4 @@ TribeSchema.pre('save', next => {
     next()
 })
 
-module.exports = Tribe = mongoose.model('tribe', TribeSchema)
+module.exports = Tribe = mongoose.model('Tribe', TribeSchema)

@@ -12,7 +12,7 @@ const ProjectSchema = new Schema({
     time_logged: { type: Number, default: 0 },
     active: { type: Boolean, default: true},
     completed: { type: Boolean, default: false },
-    stacks: [Stack]
+    stacks: [{type: Schema.Types.ObjectId, ref: 'Stack'}]
 })
 
 ProjectSchema.pre('save', next => {
@@ -23,4 +23,4 @@ ProjectSchema.pre('save', next => {
     next()
 })
 
-module.exports = Project = mongoose.model('project', ProjectSchema)
+module.exports = Project = mongoose.model('Project', ProjectSchema)
