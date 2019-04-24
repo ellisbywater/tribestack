@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const logger = require('morgan')
 const dotenv = require('dotenv')
 const path = require('path')
-const db_config = require('./config').db
+const dbConfig = require('./config').db
 const passport = require('./config/passport')
 dotenv.config()
 
@@ -30,8 +30,8 @@ if(process.env.NODE_ENV === 'production') {
     })
 }
 // database setup
-const db_uri = db_config.development.uri
-mongoose.connect(db_uri)
+const dbUri = dbConfig.development.uri
+mongoose.connect(dbUri)
     .then(()=> console.log(">>> CONNECTED TO MONGODB....."))
     .catch(err => console.log(err))
 
