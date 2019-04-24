@@ -3,6 +3,8 @@ const GitStrategy = require('passport-github').Strategy
 const mongoose = require('mongoose')
 const User = require('../models/User')
 
+const { GITHUB_ID, GITHUB_SECRET } = process.env
+
 
 passport.serializeUser((user, done) => {
     done(null, user)
@@ -15,8 +17,8 @@ passport.deserializeUser((user, done) => {
 passport.use(
     new GitStrategy(
         {
-            clientID: "",
-            clientSecret: "",
+            clientID: GITHUB_ID,
+            clientSecret: GITHUB_SECRET,
             callbackURL: ""
         },
         (accessToken, refreshToken, profile, done) => {

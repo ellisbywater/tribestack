@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap'
 import { CSSTransition, TransitionGroup } from "react-transition-group"
 import { connect } from 'react-redux'
-import { getTasks, deleteItem } from "../actions/taskActions";
+import { getTasks, deleteTask } from "../actions/taskActions";
 
 class TaskList extends Component {
 
@@ -11,7 +11,7 @@ class TaskList extends Component {
         this.props.getTasks()
     }
     onDeleteClick = id => {
-        this.props.deleteItem(id)
+        this.props.deleteTask(id)
     }
     render() {
         let { tasks } = this.props.tasks
@@ -48,4 +48,4 @@ const mapStateToProps = (state) => ({
     tasks: state.tasks
 })
 
-export default connect(mapStateToProps, {getTasks, deleteItem})(TaskList)
+export default connect(mapStateToProps, {getTasks, deleteTask})(TaskList)
