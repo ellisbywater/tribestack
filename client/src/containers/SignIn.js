@@ -1,38 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card'
 import withStyles from '@material-ui/core/styles/withStyles';
+import logo from '../assets/tribestack-LOGO.png'
+import background from '../assets/login-background.png'
 
+const styles = theme => ({ 
 
-
-const styles = theme => ({
     main: {
       width: 'auto',
-      display: 'block', // Fix IE 11 issue.
-      marginLeft: theme.spacing.unit * 3,
-      marginRight: theme.spacing.unit * 3,
-      [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
-        width: 400,
-        marginLeft: 'auto',
-        marginRight: 'auto',
-      },
+      height:'100vh',
+      display: 'block',
+      // display: 'block', // Fix IE 11 issue.
+      // marginLeft: theme.spacing.unit * 3,
+      // marginRight: theme.spacing.unit * 3,
+      // [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
+      //   width: 400,
+      //   marginLeft: 'auto',
+      //   marginRight: 'auto',
+      // }
     },
-    paper: {
-      marginTop: theme.spacing.unit * 8,
-      display: 'flex',
-      flexDirection: 'column',
+    card: {
+      maxWidth: 400,
+      justify: 'center',
       alignItems: 'center',
-      padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+      padding: '20px'
     },
     avatar: {
       margin: theme.spacing.unit,
@@ -43,7 +38,9 @@ const styles = theme => ({
       marginTop: theme.spacing.unit,
     },
     submit: {
-      marginTop: theme.spacing.unit * 3,
+      padding: `${theme.spacing.unit * 2}px`,
+      backgroundColor: "#343a40",
+      marginTop: theme.spacing.unit * 5,
     },
   });
   
@@ -51,25 +48,28 @@ const styles = theme => ({
     const { classes } = props;
   
     return (
-      <main className={classes.main}>
+      <Grid container spacing={0}
+       direction="column"
+        alignItems="center"
+        justify="center"
+        style={{ minHeight: '100vh' }}
+        >
         <CssBaseline />
-        <Paper className={classes.paper}>
-          <Typography component="h1" variant="h5">
-            TribeStack
-          </Typography>
-          <form className={classes.form}>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              GitHub
-            </Button>
-          </form>
-        </Paper>
-      </main>
+        <Card className={classes.card}>
+          <img alt="TribeStack Logo" src={logo} />
+          
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="danger"
+            className={classes.submit}
+          >
+            GitHub
+          </Button>
+          
+        </Card>
+      </Grid>
     );
   }
   
